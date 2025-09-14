@@ -24,14 +24,14 @@ FlightBooking::FlightBooking(int id, int capacity, int reserved)
     // Save data to members
     this->id = id;
     this->capacity = capacity;
-    if (reserved > capacity * 1.05)
+    if (reserved <= capacity + capacity * .05)
     {
-        std::cout << "The reserved seats can not be higher than 105% the plane capacity";
-        this->reserved = 0;
+        this->reserved = reserved;
     }
     else
     {
-        this->reserved = reserved;
+        std::cout << "The reserved seats can not be higher than 105% the plane capacity";
+        this->reserved = 0;
     }
 }
 
@@ -39,7 +39,7 @@ bool FlightBooking::reserveSeats(int number_of_seats)
 {
     // try to add reservations and return 'true' on success
     // keep the limits in mind
-    if (number_of_seats + reserved > capacity* 1.05) 
+    if (number_of_seats + reserved > capacity*.05)
     { 
         std::cout << "The reserved seats can not be higher than 105% the plane capacity"<<std::endl;
         return false; 
@@ -77,10 +77,10 @@ int main() {
 
 
     std::string input = " ";
-    while (input != "exit")
+    while (1)
     {
         int seats = 0;
-        bool command_worked = true;
+        bool command_worked = false;
         input = " ";
         
         booking.printStatus();
@@ -99,14 +99,19 @@ int main() {
             std::cin >> seats;
             command_worked = booking.cancelReservations(seats);
         }
+        else if (input == "exit")
+        {
+            std::cout << "Goodbye!";
+            break;
+        }
         else
         {
-            std::cout << "Command not found"<<std::endl;
+            std::cout << "Command not found";
         }
 
         if (!command_worked) 
         {
-            std::cout << "Cannot perform this operation"<<std::endl;
+            std::cout << "Cannot perform this operation";
         }
     }
 

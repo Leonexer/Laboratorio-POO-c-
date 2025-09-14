@@ -67,7 +67,7 @@ int main()
 		{
 			bool Repeat = false;
 
-			while (ID == 0) //Flight cant be 0
+			while (ID == 0) //User ID cant be 0
 			{
 				std::cout << "Provide a user ID (cannot be 0): ";
 				std::cin >> ID;
@@ -116,7 +116,6 @@ int main()
 					break;
 				}
 			}
-			//std::cout << "ID not found" << std::endl;
 		}
 		else if (Input == "extend")
 		{
@@ -125,7 +124,7 @@ int main()
 			std::cout << "How many months do you wish to add to their subscription?: ";
 			std::cin >> Months;
 
-			for (int idx = 0; idx < Max_members;idx++) //Deleting the member object
+			for (int idx = 0; idx < Max_members;idx++) //Adding the months
 			{
 				if (Members[idx].getID() == ID)
 				{
@@ -136,7 +135,7 @@ int main()
 			}
 			//std::cout << "ID not found" << std::endl;
 		}
-		else if (Input == "Cancel") 
+		else if (Input == "cancel") 
 		{
 			std::cout << "Provide a user ID: ";
 			std::cin >> ID;

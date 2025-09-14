@@ -44,7 +44,7 @@ std::string Fraction::toString() {
 }
 
 double Fraction::toDouble() {
-    return double(numerator) / denominator;
+    return double (numerator) / denominator;
 }
 
 int main() {
