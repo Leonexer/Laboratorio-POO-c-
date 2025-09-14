@@ -33,11 +33,10 @@ FlightBooking::FlightBooking(int id, int capacity, int reserved)
 
 FlightBooking::FlightBooking()
 {
-    // Save data to members
+    // Initialize atributes
     this->id = 0;
     this->capacity = 0;
     this->reserved = 0;
-
 }
 int FlightBooking::getID()
 {
@@ -47,6 +46,7 @@ int FlightBooking::getID()
 void FlightBooking::printStatus()
 {
     // print report here
+    if (id == 0) { return; }
     std::cout << "Flight [" << id << "] : " << reserved << "/" << capacity << " (" << 100 / capacity * reserved << " %) seats taken" << std::endl;
 
 }
@@ -55,7 +55,7 @@ bool FlightBooking::reserveSeats(int number_of_seats)
 {
     // try to add reservations and return 'true' on success
     // keep the limits in mind
-    if (number_of_seats > reserved + reserved * .05)
+    if (number_of_seats + reserved > capacity * 1.05)
     {
         std::cout << "The reserved seats can not be higher than 105% the plane capacity" << std::endl;
         return false;
@@ -90,7 +90,7 @@ int main() {
    // std::cout << "Provide number of reserved seats: ";
 
     std::string input = " ";
-    while (input != "exit")
+    while (1)
     {
         int reserved = 0;
         int capacity = 0;
@@ -100,13 +100,14 @@ int main() {
         input = " ";
 
         for (int idx = 0; idx < Max_booking;idx++)
-        { 
+        {
             booking[idx].printStatus();
         }
 
         std::cout << "What do you want to do?" << std::endl;
         std::cin >> input;
 
+        if (input == "exit") { break; }
         if (input == "add")
         {
             std::cout << "Provide a flight ID: ";
@@ -135,16 +136,39 @@ int main() {
         }
         else if (input == "create")
         {
-            std::cout << "Provide a flight ID: ";
-            std::cin >> ID;
+            bool Repeat = false;
+
+            while (ID == 0) //Flight cant be 0
+            {
+                std::cout << "Provide a flight ID (cannot be 0): ";
+                std::cin >> ID;
+                if (ID == 0) {std::cout << "ID cant be 0";}
+            }
+
             std::cout << "Provide flight capacity: ";
             std::cin >> capacity;
             std::cout << "Provide number of reserved seats: ";
             std::cin >> reserved;
 
-            for (int idx = 0; idx < Max_booking;idx++)
+
+
+            for (int idx = 0; idx < Max_booking;idx++) //Checking for repeat IDs
             {
-                if (booking[idx].getID() != 0)
+                if (booking[idx].getID() == ID)
+                {
+                    Repeat = true;
+                    break;
+                }
+            }
+            if (Repeat) 
+            { 
+                std::cout << "IDs can't repeat...";
+                continue; 
+            } 
+            
+            for (int idx = 0; idx < Max_booking;idx++) //Creating the flight
+            {
+                if (booking[idx].getID() == 0)
                 {
                     booking[idx] = FlightBooking(ID, capacity, reserved);
                     command_worked = true;
@@ -178,6 +202,5 @@ int main() {
             std::cout << "Cannot perform this operation";
         }
     }
-
     return 0;
 }
