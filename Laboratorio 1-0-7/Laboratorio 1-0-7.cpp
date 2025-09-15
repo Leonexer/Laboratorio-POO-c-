@@ -35,7 +35,6 @@ int main()
 {
 	Square s(4);
 
-
 	s.print();
 
 	s.set_side(2.0);

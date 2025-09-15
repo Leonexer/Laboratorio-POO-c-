@@ -90,8 +90,6 @@ int main() {
 	double pointY;
 	char comma;
 
-	while (input != "exit")
-	{
 		for (int i = 0; i < 2;i++) {
 			std::cout << "Please provide a point in (3,4) format: ";
 			std::cin >> pointX >> comma >> pointY;
@@ -127,6 +125,5 @@ int main() {
 			std::cout << "Point C isnt colinear with Point A and Point B" << std::endl;
 		}
 
-	}
 }
 

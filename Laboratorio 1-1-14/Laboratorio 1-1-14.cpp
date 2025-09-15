@@ -47,7 +47,7 @@ void FlightBooking::printStatus()
 {
     // print report here
     double percent;
-    if (capacity != 0) {percent = static_cast<double>((reserved) / capacity) * 100; }
+    if (capacity != 0) { percent = (static_cast<double>(reserved) / capacity) * 100; }
     else { percent = 0; }
     if (id == 0) { return; }
     std::cout << "Flight [" << id << "] : " << reserved << "/" << capacity << " (" << percent << " %) seats taken" << std::endl;
@@ -86,11 +86,6 @@ bool FlightBooking::cancelReservations(int number_of_seats)
 int main() {
     const int Max_booking = 10;
     FlightBooking booking[Max_booking];
-
-
-    //std::cout << "Provide flight capacity: ";
-
-   // std::cout << "Provide number of reserved seats: ";
 
     std::string input = " ";
     while (1)

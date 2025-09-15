@@ -35,8 +35,8 @@ Point2D::Point2D(double x, double y)
 
 std::string Point2D::toString()
 {
-	std::string Wasa = std::to_string(x) + " , " + std::to_string(y);
-	return Wasa;
+	std::string PointString = std::to_string(x) + " , " + std::to_string(y);
+	return PointString;
 }
 
 double Point2D:: distanceTo(Point2D that)

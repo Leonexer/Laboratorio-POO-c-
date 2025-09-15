@@ -15,7 +15,9 @@ public:
 
 void print(Person* person)
 {
-	cout << person->name << " is " << person->age << " years old, they're " << person->height << " meters tall and weigh " << person->weight << " Kilograms" << endl;
+	cout << person->name << " is " << person->age 
+		<< " years old, they're " << person->height 
+		<< " meters tall and weigh " << person->weight << " Kilograms" << endl;
 }
 
 
