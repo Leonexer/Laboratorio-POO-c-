@@ -62,31 +62,37 @@ int main() {
     string line;
 
     while (true) {
+        std::cout << "Enter your animal and its weight, for example: sheep 50" << endl;
         getline(cin, line);
         if (line.empty()) break; //Menú con getline que para al dejar una linea vacía
 
         stringstream ss(line);
         string type;
         double weight;
-        ss >> type >> weight;
 
+        ss >> type >> weight;
+        if (type == "end") { break; }
         if (type == "sheep") {
             Sheep s(weight);
             accumulator.addConsumption(s);
+            cout << "Your sheep will consume " << s.getWaterConsumption() << " liters of water per day" << endl;
         }
         else if (type == "horse") {
             Horse h(weight);
             accumulator.addConsumption(h);
+            cout << "Your horse will consume " << h.getWaterConsumption() << " liters of water per day" << endl;
         }
         else if (type == "cow") {
             Cow c(weight);
             accumulator.addConsumption(c);
+            cout << "Your cow will consume " << c.getWaterConsumption() << " liters of water per day" << endl;
         }
         else {
             cout << "Unknown animal: " << type << endl;
         }
+
+        cout << "Your total liter consumption per day is: " << accumulator.getTotalConsumption() << endl << endl;
     }
 
-    cout << accumulator.getTotalConsumption() << endl;
     return 0;
 }
